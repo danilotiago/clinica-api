@@ -1,0 +1,21 @@
+{
+  "name": "clinica-api",
+  "version": "1.0.0",
+  "description": "API da clinica Carol Podologia",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "projetaria",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^5.7.12",
+    "restify": "^8.4.0",
+    "restify-errors": "^8.0.1"
+  },
+  "devDependencies": {
+    "@types/mongoose": "^5.5.32",
+    "@types/restify": "^8.4.2",
+    "@types/restify-errors": "^4.3.3"
+  }
+}
