@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const encrypt_password_1 = require("./encrypt-password");
 const mongoose = require("mongoose");
 const userSchema = new mongoose.Schema({
     name: {
@@ -19,5 +20,12 @@ const userSchema = new mongoose.Schema({
         select: false,
         required: true
     }
+});
+/**
+ * middlewares pre => mongoose
+ *
+ */
+userSchema.pre('save', function (next) {
+    encrypt_password_1.hashPassword(this, next);
 });
 exports.User = mongoose.model('User', userSchema);

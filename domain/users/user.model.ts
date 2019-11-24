@@ -1,3 +1,4 @@
+import { hashPassword } from './encrypt-password';
 import * as mongoose from 'mongoose'
 
 export interface User extends mongoose.Document {
@@ -26,4 +27,13 @@ const userSchema = new mongoose.Schema({
         required: true
     }
 })
+
+/**
+ * middlewares pre => mongoose
+ * 
+ */
+userSchema.pre('save', function(next) {
+    hashPassword(this, next)
+})
+
 export const User = mongoose.model<User>('User', userSchema)
