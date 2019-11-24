@@ -9,6 +9,7 @@ class UsersService {
                 resp.send(users)
                 return next()
             })
+            .catch(err => next(err))
     }
 
     save(req: restify.Request, resp: restify.Response, next: restify.Next) {
@@ -18,6 +19,7 @@ class UsersService {
                 resp.send(user)
                 return next()
             })
+            .catch(err => next(err))
     }
 }
 export const usersService = new UsersService()

@@ -1,5 +1,5 @@
-import { defaultMiddlewares } from './../app/middlewares/default-middlewares';
-import { routes } from '../app/routes/register-routes';
+import { defaultMiddlewares } from './../app/middlewares/default-middlewares'
+import { routes } from '../app/routes/register-routes'
 import * as restify from 'restify'
 import * as mongoose from 'mongoose'
 import { environment } from './../config/environment'

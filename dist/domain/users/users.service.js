@@ -7,7 +7,8 @@ class UsersService {
             .then(users => {
             resp.send(users);
             return next();
-        });
+        })
+            .catch(err => next(err));
     }
     save(req, resp, next) {
         return users_repository_1.usersRepository.save(req.body)
@@ -15,7 +16,8 @@ class UsersService {
             user.password = undefined;
             resp.send(user);
             return next();
-        });
+        })
+            .catch(err => next(err));
     }
 }
 exports.usersService = new UsersService();

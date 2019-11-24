@@ -1,4 +1,5 @@
 import * as restify from 'restify'
+import { handleError } from '../errors/error-handle'
 
 export class DefaultMiddlewares {
 
@@ -6,6 +7,8 @@ export class DefaultMiddlewares {
 
         application.use(restify.plugins.queryParser())
         application.use(restify.plugins.bodyParser())
+        
+        application.on('restifyError', handleError)
     }
 }
 
