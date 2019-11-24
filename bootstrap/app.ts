@@ -1,4 +1,4 @@
-import { routes } from './../config/routes/register-routes';
+import { routes } from '../app/routes/register-routes';
 import * as restify from 'restify'
 import * as mongoose from 'mongoose'
 import { environment } from './../config/environment'

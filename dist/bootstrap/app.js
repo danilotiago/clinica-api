@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const register_routes_1 = require("./../config/routes/register-routes");
+const register_routes_1 = require("../app/routes/register-routes");
 const mongoose = require("mongoose");
 const environment_1 = require("./../config/environment");
 const server_1 = require("./../server");

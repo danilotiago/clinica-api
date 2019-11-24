@@ -1,4 +1,4 @@
-import { usersRoute } from './../../domain/users/users.route';
+import { usersRoute } from '../../domain/users/users.route';
 import { IRouter } from './irouter'
 
 /**
