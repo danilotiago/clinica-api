@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const default_middlewares_1 = require("./../app/middlewares/default-middlewares");
 const register_routes_1 = require("../app/routes/register-routes");
 const mongoose = require("mongoose");
 const environment_1 = require("./../config/environment");
@@ -14,6 +15,7 @@ class App {
                 this.initDatabase()
                     .then(() => {
                     this.initRoutes();
+                    default_middlewares_1.defaultMiddlewares.applyMiddlewares(this.application);
                     this.application.listen(environment_1.environment.server.port, () => {
                         resolve(this.application);
                     });

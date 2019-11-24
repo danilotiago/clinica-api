@@ -1,3 +1,4 @@
+import { defaultMiddlewares } from './../app/middlewares/default-middlewares';
 import { routes } from '../app/routes/register-routes';
 import * as restify from 'restify'
 import * as mongoose from 'mongoose'
@@ -14,6 +15,7 @@ export class App {
                 this.initDatabase()
                     .then(() => {
                         this.initRoutes()
+                        defaultMiddlewares.applyMiddlewares(this.application)
 
                         this.application.listen(environment.server.port, () => {
                             resolve(this.application)

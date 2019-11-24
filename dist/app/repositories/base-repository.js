@@ -6,7 +6,6 @@ class BaseRepository {
             return this.model.find();
         };
         this.save = data => {
-            console.log(data);
             let object = new this.model(data);
             return object.save();
         };

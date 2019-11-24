@@ -1,5 +1,4 @@
 import * as mongoose from 'mongoose'
-import * as restify from 'restify'
 
 export abstract class BaseRepository<D extends mongoose.Document> {
 
@@ -11,5 +10,10 @@ export abstract class BaseRepository<D extends mongoose.Document> {
 
     findAll = () => {
         return this.model.find()
+    }
+
+    save = data => {
+        let object = new this.model(data)
+        return object.save()
     }
 }
