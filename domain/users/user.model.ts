@@ -1,4 +1,4 @@
-import { hashPassword } from './encrypt-password';
+import { hashPassword } from './hash-password';
 import * as mongoose from 'mongoose'
 
 export interface User extends mongoose.Document {

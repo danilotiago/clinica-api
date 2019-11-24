@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const encrypt_password_1 = require("./encrypt-password");
+const hash_password_1 = require("./hash-password");
 const mongoose = require("mongoose");
 const userSchema = new mongoose.Schema({
     name: {
@@ -26,6 +26,6 @@ const userSchema = new mongoose.Schema({
  *
  */
 userSchema.pre('save', function (next) {
-    encrypt_password_1.hashPassword(this, next);
+    hash_password_1.hashPassword(this, next);
 });
 exports.User = mongoose.model('User', userSchema);
