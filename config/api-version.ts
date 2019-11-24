@@ -1,0 +1,1 @@
+export const API_VERSION: string = '1.0.0'
