@@ -33,7 +33,9 @@ class App {
     initDatabase() {
         return mongoose.connect(environment_1.environment.db.url, {
             useNewUrlParser: true,
-            useUnifiedTopology: true
+            useUnifiedTopology: true,
+            useFindAndModify: false,
+            useCreateIndex: true
         });
     }
     initRoutes() {

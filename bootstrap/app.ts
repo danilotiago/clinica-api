@@ -34,7 +34,9 @@ export class App {
     private initDatabase(): Promise<mongoose.Mongoose> {
         return mongoose.connect(environment.db.url, {
             useNewUrlParser: true,
-            useUnifiedTopology: true
+            useUnifiedTopology: true,
+            useFindAndModify: false,
+            useCreateIndex: true
         })
     }
 

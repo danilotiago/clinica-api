@@ -26,6 +26,15 @@ const userSchema = new mongoose.Schema({
  *
  */
 userSchema.pre('save', function (next) {
+    if (!this.isModified('password')) {
+        return next();
+    }
     hash_password_1.hashPassword(this, next);
+});
+userSchema.pre('findOneAndUpdate', function (next) {
+    if (!this.getUpdate().password) {
+        return next();
+    }
+    hash_password_1.hashPassword(this.getUpdate(), next);
 });
 exports.User = mongoose.model('User', userSchema);
