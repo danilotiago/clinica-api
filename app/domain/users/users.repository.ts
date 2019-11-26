@@ -1,5 +1,5 @@
 import { User } from './user.model'
-import { BaseRepository } from '../../app/repositories/base-repository'
+import { BaseRepository } from '../../repositories/base-repository'
 
 class UsersRepository extends BaseRepository<User> {
     constructor() {

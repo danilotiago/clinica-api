@@ -3,7 +3,7 @@ import { environment } from './../../config/environment';
 import * as restify from 'restify'
 import * as jwt from 'jsonwebtoken'
 import { NotAuthorizedError } from 'restify-errors'
-import { usersRepository } from './../../domain/users/users.repository'
+import { usersRepository } from '../domain/users/users.repository'
 
 export const authenticate: restify.RequestHandler = (req, resp, next) => {
     

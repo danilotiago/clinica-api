@@ -1,6 +1,6 @@
 import * as restify from 'restify'
 import { usersService } from './users.service'
-import { IRouter } from '../../app/routes/irouter'
+import { IRouter } from './../../routes/irouter'
 
 class UsersRoute implements IRouter {
     

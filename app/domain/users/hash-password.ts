@@ -1,4 +1,4 @@
-import { environment } from '../../config/environment'
+import { environment } from './../../../config/environment'
 import * as bcrypt from 'bcrypt'
 
 export const hashPassword = (user, next) => {

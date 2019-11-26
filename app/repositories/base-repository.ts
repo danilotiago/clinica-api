@@ -1,4 +1,4 @@
-import { NotFoundError } from 'restify-errors';
+import { NotFoundError } from 'restify-errors'
 import * as mongoose from 'mongoose'
 
 export abstract class BaseRepository<D extends mongoose.Document> {

@@ -1,6 +1,6 @@
 import { IRouter } from './irouter'
-import { usersRoute } from '../../domain/users/users.route'
 import { authRoute } from '../auth/auth.route'
+import { usersRoute } from './../domain/users/users.route'
 
 /**
  * registro de resources
