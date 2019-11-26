@@ -1,4 +1,4 @@
-import * as restify from 'restify';
+import * as restify from 'restify'
 
 export const handleError = (req: restify.Request, resp: restify.Response, err, done) => {
 
@@ -14,16 +14,16 @@ export const handleError = (req: restify.Request, resp: restify.Response, err, d
                 err.statusCode = 400
                 error = 'Erro de integridade referencial'
             }
-        break;
+        break
         case 'ValidationError':
             err.statusCode = 400
             error = 'Erro de validação'
-        break;
+        break
     }
 
     err.toJSON = () => {
         return {timestamp, status, error, message, path}
     }
 
-    done();
+    done()
 }

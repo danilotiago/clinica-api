@@ -5,6 +5,9 @@ const base_repository_1 = require("../../app/repositories/base-repository");
 class UsersRepository extends base_repository_1.BaseRepository {
     constructor() {
         super(user_model_1.User);
+        this.findByEmail = (email, projection = null) => {
+            return this.model.findOne({ email }, projection);
+        };
     }
 }
 exports.usersRepository = new UsersRepository();

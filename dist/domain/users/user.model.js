@@ -1,7 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const hash_password_1 = require("./hash-password");
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
+const hash_password_1 = require("./hash-password");
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -37,4 +38,7 @@ userSchema.pre('findOneAndUpdate', function (next) {
     }
     hash_password_1.hashPassword(this.getUpdate(), next);
 });
+userSchema.methods.passwordIsValid = function (password) {
+    return bcrypt.compareSync(password, this.password);
+};
 exports.User = mongoose.model('User', userSchema);

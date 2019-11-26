@@ -1,10 +1,12 @@
-import { hashPassword } from './hash-password';
 import * as mongoose from 'mongoose'
+import * as bcrypt from 'bcrypt'
+import { hashPassword } from './hash-password'
 
 export interface User extends mongoose.Document {
     name: string
     email: string
     password: string
+    passwordIsValid(password: string): boolean
 }
 
 const userSchema = new mongoose.Schema({
@@ -45,5 +47,9 @@ userSchema.pre('findOneAndUpdate', function(next) {
     }
     hashPassword(this.getUpdate(), next)
 })
+
+userSchema.methods.passwordIsValid = function(password: string): boolean {
+    return bcrypt.compareSync(password, this.password)
+}
 
 export const User = mongoose.model<User>('User', userSchema)
