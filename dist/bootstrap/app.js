@@ -1,8 +1,11 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const default_middlewares_1 = require("./../app/middlewares/default-middlewares");
 const register_routes_1 = require("../app/routes/register-routes");
-const mongoose = require("mongoose");
+const mongoose_1 = __importDefault(require("mongoose"));
 const environment_1 = require("./../config/environment");
 const server_1 = require("./../server");
 class App {
@@ -31,7 +34,7 @@ class App {
         });
     }
     initDatabase() {
-        return mongoose.connect(environment_1.environment.db.url, {
+        return mongoose_1.default.connect(environment_1.environment.db.url, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useFindAndModify: false,

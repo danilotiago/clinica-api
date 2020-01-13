@@ -1,3 +1,4 @@
+import { cors } from './../../config/cors';
 import * as restify from 'restify'
 import { handleError } from '../errors/error-handle'
 
@@ -7,6 +8,9 @@ export class DefaultMiddlewares {
 
         application.use(restify.plugins.queryParser())
         application.use(restify.plugins.bodyParser())
+
+        application.pre(cors.preflight)
+        application.use(cors.actual)
         
         application.on('restifyError', handleError)
     }
