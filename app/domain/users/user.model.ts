@@ -1,3 +1,4 @@
+import { addressSchema, Address } from './address.model';
 import * as mongoose from 'mongoose'
 import * as bcrypt from 'bcrypt'
 import { hashPassword } from './hash-password'
@@ -5,6 +6,9 @@ import { hashPassword } from './hash-password'
 export interface User extends mongoose.Document {
     name: string
     email: string
+    birthDate: Date
+    address: Address
+    profiles: [String]
     password: string
     passwordIsValid(password: string): boolean
 }
@@ -23,11 +27,23 @@ const userSchema = new mongoose.Schema({
         match: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
     },
+    birthDate: {	
+        type: Date,
+        required: true
+    },
     password: { 
         type: String,
         select: false,
         required: true
-    }
+    },
+    profiles: {
+        type: [String],
+        required: false
+    },
+    address: {	
+        type: addressSchema,
+        required: false
+    },
 })
 
 /**

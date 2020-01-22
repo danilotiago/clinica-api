@@ -4,6 +4,7 @@ import * as restify from 'restify'
 import mongoose from 'mongoose'
 import { environment } from './../config/environment'
 import { application } from './../server'
+import { seederRunner } from '../app/seeders/seeder.runner'
 
 export class App {
 
@@ -15,6 +16,7 @@ export class App {
                 this.initDatabase()
                     .then(() => {
                         this.initRoutes()
+                        this.runSeeders()
                         defaultMiddlewares.applyMiddlewares(this.application)
 
                         this.application.listen(environment.server.port, () => {
@@ -42,5 +44,9 @@ export class App {
 
     private initRoutes() {
         routes.forEach(route => route.applyRoutes(this.application))
+    }
+
+    private runSeeders() {
+        seederRunner.runSeeders()
     }
 }

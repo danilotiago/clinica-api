@@ -8,6 +8,7 @@ const register_routes_1 = require("../app/routes/register-routes");
 const mongoose_1 = __importDefault(require("mongoose"));
 const environment_1 = require("./../config/environment");
 const server_1 = require("./../server");
+const seeder_runner_1 = require("../app/seeders/seeder.runner");
 class App {
     constructor() {
         this.application = server_1.application;
@@ -18,6 +19,7 @@ class App {
                 this.initDatabase()
                     .then(() => {
                     this.initRoutes();
+                    this.runSeeders();
                     default_middlewares_1.defaultMiddlewares.applyMiddlewares(this.application);
                     this.application.listen(environment_1.environment.server.port, () => {
                         resolve(this.application);
@@ -43,6 +45,9 @@ class App {
     }
     initRoutes() {
         register_routes_1.routes.forEach(route => route.applyRoutes(this.application));
+    }
+    runSeeders() {
+        seeder_runner_1.seederRunner.runSeeders();
     }
 }
 exports.App = App;

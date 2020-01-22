@@ -7,6 +7,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const address_model_1 = require("./address.model");
 const mongoose = __importStar(require("mongoose"));
 const bcrypt = __importStar(require("bcrypt"));
 const hash_password_1 = require("./hash-password");
@@ -23,11 +24,23 @@ const userSchema = new mongoose.Schema({
         required: true,
         match: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     },
+    birthDate: {
+        type: Date,
+        required: true
+    },
     password: {
         type: String,
         select: false,
         required: true
-    }
+    },
+    profiles: {
+        type: [String],
+        required: false
+    },
+    address: {
+        type: address_model_1.addressSchema,
+        required: false
+    },
 });
 /**
  * middlewares pre => mongoose

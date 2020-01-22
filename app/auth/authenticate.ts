@@ -21,9 +21,10 @@ export const authenticate: restify.RequestHandler = (req, resp, next) => {
                 iss: 'clinica-app'
             }, environment.security.apiSecret)
 
+            user.password = undefined
+
             resp.json({
-                name: user.name,
-                email: user.email,
+                user,
                 accessToken: token
             })
 
