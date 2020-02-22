@@ -42,8 +42,7 @@ exports.addressSchema = new mongoose.Schema({
     },
     state: {
         type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        minlength: 2,
-        maxlength: 100
+        ref: 'State',
+        required: true
     }
 });

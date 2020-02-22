@@ -22,9 +22,11 @@ exports.authenticate = (req, resp, next) => {
             sub: user.email,
             iss: 'clinica-app'
         }, environment_1.environment.security.apiSecret);
-        user.password = undefined;
         resp.json({
-            user,
+            id: user._id,
+            name: user.name,
+            email: user.email,
+            profiles: user.profiles,
             accessToken: token
         });
         return next();

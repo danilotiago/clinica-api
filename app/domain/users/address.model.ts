@@ -1,4 +1,5 @@
 import * as mongoose from 'mongoose'
+import { State } from '../states/state.model'
 
 export interface Address extends mongoose.Document {
     cep: string
@@ -7,7 +8,7 @@ export interface Address extends mongoose.Document {
     complement: string
     neighborhood: string
     city: string
-    state: string
+    state: State | mongoose.Types.ObjectId
 }
 
 export const addressSchema = new mongoose.Schema({
@@ -44,8 +45,7 @@ export const addressSchema = new mongoose.Schema({
     },
     state: {	
         type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        minlength: 2,
-        maxlength: 100
+        ref: 'State',
+        required: true
     }
 })

@@ -39,7 +39,7 @@ const userSchema = new mongoose.Schema({
     },
     address: {
         type: address_model_1.addressSchema,
-        required: false
+        required: true
     },
 });
 /**
