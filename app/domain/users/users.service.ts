@@ -1,6 +1,7 @@
 import * as restify from 'restify'
 import { usersRepository } from './users.repository'
 import { NotFoundError } from 'restify-errors'
+import { Profiles } from '../../enums/Profiles.enum'
 
 class UsersService {
     
@@ -26,6 +27,7 @@ class UsersService {
     }
 
     save(req: restify.Request, resp: restify.Response, next: restify.Next) {
+        req.body['profiles'] = [Profiles.Client]
         return usersRepository.save(req.body)
             .then(user => {
                 user.password = undefined

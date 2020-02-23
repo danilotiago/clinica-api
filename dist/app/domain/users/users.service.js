@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const users_repository_1 = require("./users.repository");
 const restify_errors_1 = require("restify-errors");
+const Profiles_enum_1 = require("../../enums/Profiles.enum");
 class UsersService {
     findAll(req, resp, next) {
         return users_repository_1.usersRepository.findAll()
@@ -23,6 +24,7 @@ class UsersService {
             .catch(err => next(err));
     }
     save(req, resp, next) {
+        req.body['profiles'] = [Profiles_enum_1.Profiles.Client];
         return users_repository_1.usersRepository.save(req.body)
             .then(user => {
             user.password = undefined;
