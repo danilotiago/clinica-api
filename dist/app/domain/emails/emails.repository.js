@@ -1,0 +1,2 @@
+class EmailsRepository extends BaseRepository {
+}
