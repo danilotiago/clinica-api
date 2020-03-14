@@ -3,12 +3,13 @@ import { Status } from '../../enums/Status.enum'
 import { User } from '../users/user.model'
 import { Professional } from '../professionals/professional.model'
 import { Specialty } from '../specialties/specialty.model'
+import { Procedure } from '../procedures/procedures.model'
 
 export interface Schedule extends mongoose.Document {
     patient: User
     professional: Professional
-    service: Specialty
-    procedures: [string] // trocar para model de Procedure
+    specialty: Specialty
+    procedures: Procedure[]
     comments: String
     requestDate: Date
     approvalDate: Date
@@ -17,28 +18,25 @@ export interface Schedule extends mongoose.Document {
 }
 
 export const scheduleSchema = new mongoose.Schema({
-    // ===========================================================
-    // alterar para Models
-    // ===========================================================
-    patient: {
-        type: String, 
-        required: true,
+    patient: {	
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     },
-    professional: {
-        type: String, 
-        required: true,
+    professional: {	
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Professional',
+        required: true
     },
-    service: {
-        type: String, 
-        required: true,
+    specialty: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Specialty',
+        required: true
     },
-    procedures: {
-        type: [String], 
-        required: true,
-    },
-    // ===========================================================
-    // alterar para Models
-    // ===========================================================
+    procedures: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Procedure'
+    }],
     comments: {
         type: String,
         required: true,

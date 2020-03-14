@@ -9,28 +9,25 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose = __importStar(require("mongoose"));
 exports.scheduleSchema = new mongoose.Schema({
-    // ===========================================================
-    // alterar para Models
-    // ===========================================================
     patient: {
-        type: String,
-        required: true,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     },
     professional: {
-        type: String,
-        required: true,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Professional',
+        required: true
     },
-    service: {
-        type: String,
-        required: true,
+    specialty: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Specialty',
+        required: true
     },
-    procedures: {
-        type: [String],
-        required: true,
-    },
-    // ===========================================================
-    // alterar para Models
-    // ===========================================================
+    procedures: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Procedure'
+        }],
     comments: {
         type: String,
         required: true,

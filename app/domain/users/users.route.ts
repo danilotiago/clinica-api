@@ -4,15 +4,14 @@ import { IRouter } from './../../routes/irouter'
 
 class UsersRoute implements IRouter {
     
-    pathClient: string = '/users/client'
-    pathProfessional: string = '/users/professional'
+    path: string = '/users'
 
     applyRoutes(application: restify.Server) {
-        application.get(this.pathClient, usersService.findAll)
-        application.get(`${this.pathClient}/:id`, usersService.findById)
-        application.post(this.pathClient, usersService.save)
-        application.put(`${this.pathClient}/:id`, usersService.update)
-        application.del(`${this.pathClient}/:id`, usersService.delete)
+        application.get(this.path, usersService.findAll)
+        application.get(`${this.path}/:id`, usersService.findById)
+        application.post(this.path, usersService.save)
+        application.put(`${this.path}/:id`, usersService.update)
+        application.del(`${this.path}/:id`, usersService.delete)
     }
 }
 export const usersRoute = new UsersRoute()
