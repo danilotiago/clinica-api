@@ -17,7 +17,7 @@ class BaseRepository {
             return this.model.countDocuments({ _id: id }).exec()
                 .then(found => {
                 if (!found) {
-                    throw new restify_errors_1.NotFoundError(`Usuário de ID: ${id} não encontrado`);
+                    throw new restify_errors_1.NotFoundError(`Recurso de ID: ${id} não encontrado`);
                 }
                 return this.model.findByIdAndUpdate(id, data, {
                     new: true,

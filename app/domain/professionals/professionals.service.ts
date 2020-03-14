@@ -6,8 +6,8 @@ class ProfessionalsService {
     
     findAll(req: restify.Request, resp: restify.Response, next: restify.Next) {
         return professionalsRepository.findAll()
-            .then(users => {
-                resp.send(users)
+            .then(professionals => {
+                resp.send(professionals)
                 return next()
             })
             .catch(err => next(err))
@@ -15,9 +15,9 @@ class ProfessionalsService {
 
     findById(req: restify.Request, resp: restify.Response, next: restify.Next) {
         return professionalsRepository.findById(req.params.id)
-            .then(user => {
-                if (user) {
-                    resp.send(user)
+            .then(professional => {
+                if (professional) {
+                    resp.send(professional)
                     return next()
                 }
                 throw new NotFoundError(`Profissional de ID: ${req.params.id} não encontrado`)
@@ -27,8 +27,8 @@ class ProfessionalsService {
 
     save(req: restify.Request, resp: restify.Response, next: restify.Next) {
         return professionalsRepository.save(req.body)
-            .then(user => {
-                resp.send(user)
+            .then(professional => {
+                resp.send(professional)
                 return next()
             })
             .catch(err => next(err))
@@ -36,8 +36,8 @@ class ProfessionalsService {
 
     update(req: restify.Request, resp: restify.Response, next: restify.Next) {
         return professionalsRepository.update(req.params.id, req.body)
-            .then(user => {
-                resp.send(user)
+            .then(professional => {
+                resp.send(professional)
                 return next()
             })
             .catch(err => next(err))

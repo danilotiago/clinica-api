@@ -26,7 +26,7 @@ export abstract class BaseRepository<D extends mongoose.Document> {
         return this.model.countDocuments({_id: id}).exec()
             .then(found => {
                 if (! found) {
-                    throw new NotFoundError(`Usuário de ID: ${id} não encontrado`)
+                    throw new NotFoundError(`Recurso de ID: ${id} não encontrado`)
                 } 
                 return this.model.findByIdAndUpdate(id, data, {
                     new: true,

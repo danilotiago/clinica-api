@@ -5,17 +5,17 @@ const professionals_repository_1 = require("./professionals.repository");
 class ProfessionalsService {
     findAll(req, resp, next) {
         return professionals_repository_1.professionalsRepository.findAll()
-            .then(users => {
-            resp.send(users);
+            .then(professionals => {
+            resp.send(professionals);
             return next();
         })
             .catch(err => next(err));
     }
     findById(req, resp, next) {
         return professionals_repository_1.professionalsRepository.findById(req.params.id)
-            .then(user => {
-            if (user) {
-                resp.send(user);
+            .then(professional => {
+            if (professional) {
+                resp.send(professional);
                 return next();
             }
             throw new restify_errors_1.NotFoundError(`Profissional de ID: ${req.params.id} não encontrado`);
@@ -24,16 +24,16 @@ class ProfessionalsService {
     }
     save(req, resp, next) {
         return professionals_repository_1.professionalsRepository.save(req.body)
-            .then(user => {
-            resp.send(user);
+            .then(professional => {
+            resp.send(professional);
             return next();
         })
             .catch(err => next(err));
     }
     update(req, resp, next) {
         return professionals_repository_1.professionalsRepository.update(req.params.id, req.body)
-            .then(user => {
-            resp.send(user);
+            .then(professional => {
+            resp.send(professional);
             return next();
         })
             .catch(err => next(err));
