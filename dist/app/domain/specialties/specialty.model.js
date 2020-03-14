@@ -28,4 +28,4 @@ const specialtySchema = new mongoose.Schema({
         maxlength: 50
     }
 });
-exports.Specialty = mongoose.model('specialty', specialtySchema);
+exports.Specialty = mongoose.model('Specialty', specialtySchema);

@@ -26,4 +26,4 @@ const specialtySchema = new mongoose.Schema({
         maxlength: 50
     }
 })
-export const Specialty = mongoose.model<Specialty>('specialty', specialtySchema)
+export const Specialty = mongoose.model<Specialty>('Specialty', specialtySchema)

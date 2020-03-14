@@ -14,10 +14,9 @@ const professionalSchema = new mongoose.Schema({
         ref: 'User',
         required: true
     },
-    specialties: {
-        type: [mongoose.Schema.Types.ObjectId],
-        ref: 'Specialty',
-        required: true
-    }
+    specialties: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Specialty'
+        }]
 });
 exports.Professional = mongoose.model('Professional', professionalSchema);
