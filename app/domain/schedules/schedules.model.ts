@@ -1,10 +1,13 @@
 import * as mongoose from 'mongoose'
 import { Status } from '../../enums/Status.enum'
+import { User } from '../users/user.model'
+import { Professional } from '../professionals/professional.model'
+import { Specialty } from '../specialties/specialty.model'
 
 export interface Schedule extends mongoose.Document {
-    patient: string // trocar para mode de User
-    professional: string // trocar para model de User
-    service: string // trocar para model de Service
+    patient: User
+    professional: Professional
+    service: Specialty
     procedures: [string] // trocar para model de Procedure
     comments: String
     requestDate: Date

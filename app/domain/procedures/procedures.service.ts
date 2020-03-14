@@ -1,59 +1,59 @@
 import * as restify from 'restify'
-import { specialtiesRepository } from './specialties.repository'
+import { proceduresRepository } from './procedures.repository'
 import { NotFoundError } from 'restify-errors'
 
-class SpecialtiesService {
+class ProceduresService {
 
     findAll(req: restify.Request, resp: restify.Response, next: restify.Next) {
-        return specialtiesRepository.findAll()
-            .then(specialties => {
-                resp.send(specialties)
+        return proceduresRepository.findAll()
+            .then(procedures => {
+                resp.send(procedures)
                 return next()
             })
             .catch(err => next(err))
     }
 
     findById(req: restify.Request, resp: restify.Response, next: restify.Next) {
-        return specialtiesRepository.findById(req.params.id)
-            .then(specialty => {
-                if (specialty) {
-                    resp.send(specialty)
+        return proceduresRepository.findById(req.params.id)
+            .then(procedure => {
+                if (procedure) {
+                    resp.send(procedure)
                     return next()
                 }
-                throw new NotFoundError(`Serviço de ID: ${req.params.id} não encontrado`)
+                throw new NotFoundError(`Procedimento de ID: ${req.params.id} não encontrado`)
             })
             .catch(err => next(err))
     }
 
     save(req: restify.Request, resp: restify.Response, next: restify.Next) {
-        return specialtiesRepository.save(req.body)
-            .then(specialty => {
-                resp.send(specialty)
+        return proceduresRepository.save(req.body)
+            .then(procedure => {
+                resp.send(procedure)
                 return next()
             })
             .catch(err => next(err))
     }
 
     update(req: restify.Request, resp: restify.Response, next: restify.Next) {
-        return specialtiesRepository.update(req.params.id, req.body)
-            .then(specialty => {
-                resp.send(specialty)
+        return proceduresRepository.update(req.params.id, req.body)
+            .then(procedure => {
+                resp.send(procedure)
                 return next()
             })
             .catch(err => next(err))
     }
 
     delete(req: restify.Request, resp: restify.Response, next: restify.Next) {
-        return specialtiesRepository.delete(req.params.id)
+        return proceduresRepository.delete(req.params.id)
             .then(result => {
                 if (result.n) {
                     resp.send(204)
                     return next()
                 }
-                throw new NotFoundError(`Serviço de ID: ${req.params.id} não encontrado`)
+                throw new NotFoundError(`Procedimento de ID: ${req.params.id} não encontrado`)
             })
             .catch(err => next(err))
     }
 }
 
-export const specialtiesService: SpecialtiesService = new SpecialtiesService()
+export const proceduresService: ProceduresService = new ProceduresService()

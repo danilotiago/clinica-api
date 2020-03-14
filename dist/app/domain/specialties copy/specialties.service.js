@@ -5,17 +5,17 @@ const restify_errors_1 = require("restify-errors");
 class SpecialtiesService {
     findAll(req, resp, next) {
         return specialties_repository_1.specialtiesRepository.findAll()
-            .then(specialties => {
-            resp.send(specialties);
+            .then(schedules => {
+            resp.send(schedules);
             return next();
         })
             .catch(err => next(err));
     }
     findById(req, resp, next) {
         return specialties_repository_1.specialtiesRepository.findById(req.params.id)
-            .then(specialty => {
-            if (specialty) {
-                resp.send(specialty);
+            .then(schedule => {
+            if (schedule) {
+                resp.send(schedule);
                 return next();
             }
             throw new restify_errors_1.NotFoundError(`Serviço de ID: ${req.params.id} não encontrado`);
@@ -24,16 +24,16 @@ class SpecialtiesService {
     }
     save(req, resp, next) {
         return specialties_repository_1.specialtiesRepository.save(req.body)
-            .then(specialty => {
-            resp.send(specialty);
+            .then(schedule => {
+            resp.send(schedule);
             return next();
         })
             .catch(err => next(err));
     }
     update(req, resp, next) {
         return specialties_repository_1.specialtiesRepository.update(req.params.id, req.body)
-            .then(specialty => {
-            resp.send(specialty);
+            .then(schedule => {
+            resp.send(schedule);
             return next();
         })
             .catch(err => next(err));
