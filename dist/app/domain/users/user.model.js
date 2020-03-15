@@ -11,7 +11,8 @@ const address_model_1 = require("./address.model");
 const mongoose = __importStar(require("mongoose"));
 const bcrypt = __importStar(require("bcrypt"));
 const hash_password_1 = require("./hash-password");
-const userSchema = new mongoose.Schema({
+const base_schema_1 = require("../../schemas/base-schema");
+const userSchema = new base_schema_1.BaseSchema({
     name: {
         type: String,
         required: true,
@@ -41,7 +42,7 @@ const userSchema = new mongoose.Schema({
         type: address_model_1.addressSchema,
         required: true
     },
-});
+}).build();
 /**
  * middlewares pre => mongoose
  *
