@@ -2,8 +2,10 @@ import { addressSchema, Address } from './address.model';
 import * as mongoose from 'mongoose'
 import * as bcrypt from 'bcrypt'
 import { hashPassword } from './hash-password'
+import { IModel } from '../../models/imodel';
+import { BaseSchema } from '../../schemas/base-schema';
 
-export interface User extends mongoose.Document {
+export interface User extends IModel {
     name: string
     email: string
     birthDate: Date
@@ -13,7 +15,7 @@ export interface User extends mongoose.Document {
     passwordIsValid(password: string): boolean
 }
 
-const userSchema = new mongoose.Schema({
+const userSchema = new BaseSchema({
     name: {	
         type: String,
         required: true,
@@ -44,7 +46,7 @@ const userSchema = new mongoose.Schema({
         type: addressSchema,
         required: true
     },
-})
+}).build()
 
 /**
  * middlewares pre => mongoose
