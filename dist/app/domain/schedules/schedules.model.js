@@ -8,7 +8,8 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose = __importStar(require("mongoose"));
-exports.scheduleSchema = new mongoose.Schema({
+const base_schema_1 = require("../../schemas/base-schema");
+exports.scheduleSchema = new base_schema_1.BaseSchema({
     patient: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
@@ -49,5 +50,5 @@ exports.scheduleSchema = new mongoose.Schema({
         type: String,
         required: true,
     }
-});
+}).build();
 exports.Schedule = mongoose.model('Schedule', exports.scheduleSchema);
