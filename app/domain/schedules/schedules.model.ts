@@ -4,8 +4,10 @@ import { User } from '../users/user.model'
 import { Professional } from '../professionals/professional.model'
 import { Specialty } from '../specialties/specialty.model'
 import { Procedure } from '../procedures/procedures.model'
+import { BaseSchema } from '../../schemas/base-schema'
+import { IModel } from '../../models/imodel'
 
-export interface Schedule extends mongoose.Document {
+export interface Schedule extends IModel {
     patient: User
     professional: Professional
     specialty: Specialty
@@ -17,7 +19,7 @@ export interface Schedule extends mongoose.Document {
     status: Status
 }
 
-export const scheduleSchema = new mongoose.Schema({
+export const scheduleSchema = new BaseSchema({
     patient: {	
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
@@ -58,6 +60,6 @@ export const scheduleSchema = new mongoose.Schema({
         type: String, 
         required: true,
     }
-})
+}).build()
 
 export const Schedule = mongoose.model<Schedule>('Schedule', scheduleSchema)

@@ -8,7 +8,8 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose = __importStar(require("mongoose"));
-const professionalSchema = new mongoose.Schema({
+const base_schema_1 = require("../../schemas/base-schema");
+const professionalSchema = new base_schema_1.BaseSchema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
@@ -18,5 +19,5 @@ const professionalSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Specialty'
         }]
-});
+}).build();
 exports.Professional = mongoose.model('Professional', professionalSchema);
