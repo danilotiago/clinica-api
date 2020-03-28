@@ -8,7 +8,8 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose = __importStar(require("mongoose"));
-const specialtySchema = new mongoose.Schema({
+const base_schema_1 = require("../../schemas/base-schema");
+const specialtySchema = new base_schema_1.BaseSchema({
     name: {
         type: String,
         required: true,
@@ -21,5 +22,5 @@ const specialtySchema = new mongoose.Schema({
     image: {
         type: String
     }
-});
+}).build();
 exports.Specialty = mongoose.model('Specialty', specialtySchema);
