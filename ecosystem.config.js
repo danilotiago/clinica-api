@@ -13,6 +13,7 @@ module.exports = {
       },
       env_production: {
         SERVER_PORT : 3001,
+        DB_URL  : 'mongodb://localhost/clinica',
         NODE_ENV : 'production'
       }
     }]
