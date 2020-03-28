@@ -1,7 +1,7 @@
 module.exports = {
     apps : [{
       name   : "clinica-api",
-      script : "dist/main.js",
+      script : "./projects/clinica-api/dist/main.js",
       instances : 0,
       exec_mode : "cluster",
       env : {
