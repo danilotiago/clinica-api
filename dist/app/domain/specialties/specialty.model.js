@@ -16,16 +16,10 @@ const specialtySchema = new mongoose.Schema({
         maxlength: 50
     },
     description: {
-        type: String,
-        required: false,
-        minlength: 3,
-        maxlength: 255
+        type: String
     },
     image: {
-        type: String,
-        required: true,
-        minlength: 3,
-        maxlength: 50
+        type: String
     }
 });
 exports.Specialty = mongoose.model('Specialty', specialtySchema);
