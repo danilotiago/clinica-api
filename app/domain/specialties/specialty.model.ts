@@ -20,6 +20,9 @@ const specialtySchema = new BaseSchema({
     },
     image: {	
         type: String
+    },
+    procedures: {
+        type: [String]
     }
 }).build()
 

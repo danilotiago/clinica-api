@@ -21,6 +21,9 @@ const specialtySchema = new base_schema_1.BaseSchema({
     },
     image: {
         type: String
+    },
+    procedures: {
+        type: [String]
     }
 }).build();
 exports.Specialty = mongoose.model('Specialty', specialtySchema);

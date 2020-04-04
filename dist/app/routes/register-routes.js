@@ -7,7 +7,6 @@ const emails_route_1 = require("../domain/emails/emails.route");
 const schedules_route_1 = require("../domain/schedules/schedules.route");
 const specialties_route_1 = require("../domain/specialties/specialties.route");
 const professionals_route_1 = require("../domain/professionals/professionals.route");
-const procedures_route_1 = require("../domain/procedures/procedures.route");
 /**
  * registro de resources
  *
@@ -19,6 +18,5 @@ exports.routes = [
     emails_route_1.emailsRouter,
     schedules_route_1.schedulesRoute,
     specialties_route_1.specialtiesRoute,
-    professionals_route_1.professionalsRoute,
-    procedures_route_1.proceduresRoute
+    professionals_route_1.professionalsRoute
 ];

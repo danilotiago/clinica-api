@@ -6,7 +6,6 @@ import { emailsRouter } from '../domain/emails/emails.route'
 import { schedulesRoute } from '../domain/schedules/schedules.route'
 import { specialtiesRoute } from '../domain/specialties/specialties.route'
 import { professionalsRoute } from '../domain/professionals/professionals.route'
-import { proceduresRoute } from '../domain/procedures/procedures.route'
 
 /**
  * registro de resources
@@ -19,6 +18,5 @@ export const routes: IRouter[] = [
     emailsRouter,
     schedulesRoute,
     specialtiesRoute,
-    professionalsRoute,
-    proceduresRoute
+    professionalsRoute
 ]

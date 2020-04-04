@@ -3,7 +3,6 @@ import { Status } from '../../enums/Status.enum'
 import { User } from '../users/user.model'
 import { Professional } from '../professionals/professional.model'
 import { Specialty } from '../specialties/specialty.model'
-import { Procedure } from '../procedures/procedures.model'
 import { BaseSchema } from '../../schemas/base-schema'
 import { IModel } from '../../models/imodel'
 
@@ -11,7 +10,6 @@ export interface Schedule extends IModel {
     patient: User
     professional: Professional
     specialty: Specialty
-    procedures: Procedure[]
     comments: String
     requestDate: Date
     approvalDate: Date
