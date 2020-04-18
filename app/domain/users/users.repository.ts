@@ -6,6 +6,14 @@ class UsersRepository extends BaseRepository<User> {
         super(User)
     }
 
+    findAll = (partialName?: String) => {
+        if (partialName) {
+            return this.model.find({name: {$regex: partialName, $options: 'i'}})
+        } else {
+            return this.model.find()
+        }
+    }
+
     findByEmail = (email, projection = null) => {
         return this.model.findOne({email}, projection)
     }

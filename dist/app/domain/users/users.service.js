@@ -5,7 +5,7 @@ const restify_errors_1 = require("restify-errors");
 const Profiles_enum_1 = require("../../enums/Profiles.enum");
 class UsersService {
     findAll(req, resp, next) {
-        return users_repository_1.usersRepository.findAll()
+        return users_repository_1.usersRepository.findAll(req.query.like)
             .then(users => {
             resp.send(users);
             return next();

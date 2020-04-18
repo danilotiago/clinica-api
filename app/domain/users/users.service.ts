@@ -6,7 +6,8 @@ import { Profiles } from '../../enums/Profiles.enum'
 class UsersService {
     
     findAll(req: restify.Request, resp: restify.Response, next: restify.Next) {
-        return usersRepository.findAll()
+        
+        return usersRepository.findAll(req.query.like)
             .then(users => {
                 resp.send(users)
                 return next()
