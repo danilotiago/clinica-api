@@ -2,6 +2,7 @@ import * as restify from 'restify'
 import { usersRepository } from './users.repository'
 import { NotFoundError } from 'restify-errors'
 import { Profiles } from '../../enums/Profiles.enum'
+import { User } from './user.model'
 
 class UsersService {
     
@@ -58,6 +59,16 @@ class UsersService {
                 throw new NotFoundError(`Usuário de ID: ${req.params.id} não encontrado`)
             })
             .catch(err => next(err))
+    }
+
+    changeProfiles(userId: string, profiles: Profiles[]) {
+        usersRepository.findById(userId).then(async user => {
+            user.profiles = profiles
+            await User.findByIdAndUpdate(userId, user, {
+                new: true,
+                runValidators: true
+            })
+        })
     }
 }
 export const usersService = new UsersService()

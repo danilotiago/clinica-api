@@ -4,13 +4,14 @@ import * as bcrypt from 'bcrypt'
 import { hashPassword } from './hash-password'
 import { IModel } from '../../models/imodel';
 import { BaseSchema } from '../../schemas/base-schema';
+import { Profiles } from '../../enums/Profiles.enum';
 
 export interface User extends IModel {
     name: string
     email: string
     birthDate: Date
     address: Address
-    profiles: [String]
+    profiles: Profiles[]
     password: string
     passwordIsValid(password: string): boolean
 }
