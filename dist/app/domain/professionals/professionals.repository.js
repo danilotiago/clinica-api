@@ -8,6 +8,10 @@ class ProfessionalsRepository extends base_repository_1.BaseRepository {
         this.findAll = () => {
             return this.model.find().populate('user').populate('specialties');
         };
+        this.findAllBySpecialty = (specialty) => {
+            return this.model.find({ specialties: specialty })
+                .populate('user').populate('specialties');
+        };
         this.findById = id => {
             return this.model.findById(id).populate('user').populate('specialties');
         };

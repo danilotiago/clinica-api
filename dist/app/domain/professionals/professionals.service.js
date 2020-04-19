@@ -15,12 +15,22 @@ const users_service_1 = require("../users/users.service");
 const Profiles_enum_1 = require("../../enums/Profiles.enum");
 class ProfessionalsService {
     findAll(req, resp, next) {
-        return professionals_repository_1.professionalsRepository.findAll()
-            .then(professionals => {
-            resp.send(professionals);
-            return next();
-        })
-            .catch(err => next(err));
+        if (req.query.specialtyId) {
+            return professionals_repository_1.professionalsRepository.findAllBySpecialty(req.query.specialtyId)
+                .then(professionals => {
+                resp.send(professionals);
+                return next();
+            })
+                .catch(err => next(err));
+        }
+        else {
+            return professionals_repository_1.professionalsRepository.findAll()
+                .then(professionals => {
+                resp.send(professionals);
+                return next();
+            })
+                .catch(err => next(err));
+        }
     }
     findById(req, resp, next) {
         return professionals_repository_1.professionalsRepository.findById(req.params.id)

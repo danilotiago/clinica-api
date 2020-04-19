@@ -7,12 +7,22 @@ import { Profiles } from '../../enums/Profiles.enum'
 class ProfessionalsService {
     
     findAll(req: restify.Request, resp: restify.Response, next: restify.Next) {
-        return professionalsRepository.findAll()
+        
+        if (req.query.specialtyId) {
+            return professionalsRepository.findAllBySpecialty(req.query.specialtyId)
             .then(professionals => {
                 resp.send(professionals)
                 return next()
             })
             .catch(err => next(err))
+        } else {
+            return professionalsRepository.findAll()
+            .then(professionals => {
+                resp.send(professionals)
+                return next()
+            })
+            .catch(err => next(err))
+        }
     }
 
     findById(req: restify.Request, resp: restify.Response, next: restify.Next) {

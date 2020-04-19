@@ -25,10 +25,10 @@ exports.scheduleSchema = new base_schema_1.BaseSchema({
         ref: 'Specialty',
         required: true
     },
-    procedures: [{
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Procedure'
-        }],
+    procedures: {
+        type: [String],
+        required: true,
+    },
     comments: {
         type: String,
         required: true,

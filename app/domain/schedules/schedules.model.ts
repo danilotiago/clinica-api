@@ -10,6 +10,7 @@ export interface Schedule extends IModel {
     patient: User
     professional: Professional
     specialty: Specialty
+	procedures: String[]
     comments: String
     requestDate: Date
     approvalDate: Date
@@ -33,10 +34,10 @@ export const scheduleSchema = new BaseSchema({
         ref: 'Specialty',
         required: true
     },
-    procedures: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Procedure'
-    }],
+    procedures: {
+        type: [String], 
+        required: true,
+    },
     comments: {
         type: String,
         required: true,
