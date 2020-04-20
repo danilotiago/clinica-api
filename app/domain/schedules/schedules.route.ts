@@ -11,6 +11,9 @@ class SchedulesRoute implements IRouter {
         application.get(`${this.path}/:id`, schedulesService.findById)
         application.post(this.path, schedulesService.save)
         application.put(`${this.path}/:id`, schedulesService.update)
+
+        application.get(`${this.path}/scheduled-times`, schedulesService.findScheduledTimesByDateAndProfessionalId)
+        application.post(`${this.path}/scheduled-times`, schedulesService.saveScheduledHour)
         //application.del(`${this.path}/:id`, schedulesService.delete)
     }
 }

@@ -2,6 +2,7 @@ import * as restify from 'restify'
 import { NotFoundError } from 'restify-errors'
 import { schedulesRepository } from './schedules.repository'
 import { Status } from '../../enums/Status.enum'
+import { hoursRepository } from './hours.repository'
 
 class SchedulesService {
     
@@ -41,6 +42,27 @@ class SchedulesService {
         return schedulesRepository.update(req.params.id, req.body)
             .then(schedule => {
                 resp.send(schedule)
+                return next()
+            })
+            .catch(err => next(err))
+    }
+
+    findScheduledTimesByDateAndProfessionalId(req: restify.Request, resp: restify.Response, next: restify.Next) {
+        const date: Date             = req.query.date
+        const professionalId: String = req.query.professionalId
+
+        return hoursRepository.findAllByDateAndProfessionalId(date, professionalId)
+            .then(hours => {
+                resp.send(hours)
+                return next()
+            })
+            .catch(err => next(err))
+    }
+
+    saveScheduledHour(req: restify.Request, resp: restify.Response, next: restify.Next) {
+        return hoursRepository.save(req.body)
+            .then(hours => {
+                resp.send(hours)
                 return next()
             })
             .catch(err => next(err))

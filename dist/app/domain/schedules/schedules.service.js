@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const restify_errors_1 = require("restify-errors");
 const schedules_repository_1 = require("./schedules.repository");
 const Status_enum_1 = require("../../enums/Status.enum");
+const hours_repository_1 = require("./hours.repository");
 class SchedulesService {
     findAll(req, resp, next) {
         return schedules_repository_1.schedulesRepository.findAll()
@@ -36,6 +37,24 @@ class SchedulesService {
         return schedules_repository_1.schedulesRepository.update(req.params.id, req.body)
             .then(schedule => {
             resp.send(schedule);
+            return next();
+        })
+            .catch(err => next(err));
+    }
+    findScheduledTimesByDateAndProfessionalId(req, resp, next) {
+        const date = req.query.date;
+        const professionalId = req.query.professionalId;
+        return hours_repository_1.hoursRepository.findAllByDateAndProfessionalId(date, professionalId)
+            .then(hours => {
+            resp.send(hours);
+            return next();
+        })
+            .catch(err => next(err));
+    }
+    saveScheduledHour(req, resp, next) {
+        return hours_repository_1.hoursRepository.save(req.body)
+            .then(hours => {
+            resp.send(hours);
             return next();
         })
             .catch(err => next(err));
