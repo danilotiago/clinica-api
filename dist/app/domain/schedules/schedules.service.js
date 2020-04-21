@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const restify_errors_1 = require("restify-errors");
 const schedules_repository_1 = require("./schedules.repository");
@@ -27,10 +36,11 @@ class SchedulesService {
     save(req, resp, next) {
         req.body['status'] = Status_enum_1.Status.Pending;
         return schedules_repository_1.schedulesRepository.save(req.body)
-            .then(schedule => {
+            .then((schedule) => __awaiter(this, void 0, void 0, function* () {
+            yield exports.schedulesService.saveScheduledHour(schedule);
             resp.send(schedule);
             return next();
-        })
+        }))
             .catch(err => next(err));
     }
     update(req, resp, next) {
@@ -51,13 +61,15 @@ class SchedulesService {
         })
             .catch(err => next(err));
     }
-    saveScheduledHour(req, resp, next) {
-        return hours_repository_1.hoursRepository.save(req.body)
-            .then(hours => {
-            resp.send(hours);
-            return next();
-        })
-            .catch(err => next(err));
+    saveScheduledHour(schedule) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const data = { schedule: schedule };
+            data.patient = schedule.patient;
+            data.professional = schedule.professional;
+            data.date = schedule.requestDate;
+            data.hour = schedule.requestHour;
+            yield hours_repository_1.hoursRepository.save(data);
+        });
     }
 }
 exports.schedulesService = new SchedulesService();

@@ -29,22 +29,22 @@ exports.scheduleSchema = new base_schema_1.BaseSchema({
         type: [String],
         required: true,
     },
-    comments: {
+    observations: {
         type: String,
-        required: true,
+        required: false,
         maxlength: 1000
     },
     requestDate: {
         type: Date,
         required: true,
     },
-    approvalDate: {
-        type: Date,
+    requestHour: {
+        type: String,
         required: true,
     },
-    reschedulingDate: {
+    approvalDate: {
         type: Date,
-        required: true,
+        required: false,
     },
     status: {
         type: String,

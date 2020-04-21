@@ -11,11 +11,13 @@ export interface Schedule extends IModel {
     professional: Professional
     specialty: Specialty
 	procedures: String[]
-    comments: String
-    requestDate: Date
-    approvalDate: Date
-    reschedulingDate: Date
+    observations: String
     status: Status
+    requestDate: Date
+    requestHour: String
+    approvalDate: Date
+    createdAt: Date
+    updatedAt: Date
 }
 
 export const scheduleSchema = new BaseSchema({
@@ -38,22 +40,22 @@ export const scheduleSchema = new BaseSchema({
         type: [String], 
         required: true,
     },
-    comments: {
+    observations: {
         type: String,
-        required: true,
+        required: false,
         maxlength: 1000
     },
     requestDate: {
         type: Date, 
         required: true,
     },
-    approvalDate: {
-        type: Date, 
+    requestHour: {
+        type: String, 
         required: true,
     },
-    reschedulingDate: {
+    approvalDate: {
         type: Date, 
-        required: true,
+        required: false,
     },
     status: {
         type: String, 

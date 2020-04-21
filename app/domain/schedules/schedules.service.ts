@@ -3,6 +3,7 @@ import { NotFoundError } from 'restify-errors'
 import { schedulesRepository } from './schedules.repository'
 import { Status } from '../../enums/Status.enum'
 import { hoursRepository } from './hours.repository'
+import { Schedule } from './schedules.model'
 
 class SchedulesService {
     
@@ -31,7 +32,8 @@ class SchedulesService {
         req.body['status'] = Status.Pending
 
         return schedulesRepository.save(req.body)
-            .then(schedule => {
+            .then(async schedule => {
+                await schedulesService.saveScheduledHour(schedule)
                 resp.send(schedule)
                 return next()
             })
@@ -59,13 +61,16 @@ class SchedulesService {
             .catch(err => next(err))
     }
 
-    saveScheduledHour(req: restify.Request, resp: restify.Response, next: restify.Next) {
-        return hoursRepository.save(req.body)
-            .then(hours => {
-                resp.send(hours)
-                return next()
-            })
-            .catch(err => next(err))
+    private async saveScheduledHour(schedule: Schedule) {
+
+        const data: any = {schedule: schedule}
+
+        data.patient      = schedule.patient
+        data.professional = schedule.professional
+        data.date         = schedule.requestDate
+        data.hour         = schedule.requestHour
+
+        await hoursRepository.save(data)
     }
 
     /*

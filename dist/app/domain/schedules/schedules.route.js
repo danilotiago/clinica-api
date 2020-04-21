@@ -11,7 +11,6 @@ class SchedulesRoute {
         application.post(this.path, schedules_service_1.schedulesService.save);
         application.put(`${this.path}/:id`, schedules_service_1.schedulesService.update);
         application.get(`${this.path}/scheduled-times`, schedules_service_1.schedulesService.findScheduledTimesByDateAndProfessionalId);
-        application.post(`${this.path}/scheduled-times`, schedules_service_1.schedulesService.saveScheduledHour);
         //application.del(`${this.path}/:id`, schedulesService.delete)
     }
 }
